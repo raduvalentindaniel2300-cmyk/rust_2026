@@ -5,14 +5,8 @@ fn prim(x: i32) -> bool {
             count += 1;
         }
     }
-    if count == 2
-     {
-         true
-    }
-    else
-     {false}
-    }
-
+    if count == 2 { true } else { false }
+}
 
 fn main() {
     for x in 0..=100 {
