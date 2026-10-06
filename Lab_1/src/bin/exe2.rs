@@ -9,7 +9,7 @@ fn cmmdc(mut a: u32, mut b: u32) -> bool {
 
 fn main() {
     for i in 0..=100 {
-        for j in 0..=100 {
+        for j in i..=100 {
             if cmmdc(i, j) == true {
                 println!("{} si {} sunt coprime", i, j);
             }
