@@ -59,7 +59,7 @@ fn add_float(s:&mut String , n:f32)
     let parte_frac = n - parte_int as f32;
     add_integer(s,parte_int);
     s.push('.');
-    let mut copie_frac = (parte_frac * 1000.0) as i32;
+    let  copie_frac = (parte_frac * 1000.0) as i32;
     if copie_frac < 100 {
         s.push('0');
         if copie_frac < 10 {
