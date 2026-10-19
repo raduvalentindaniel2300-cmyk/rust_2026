@@ -1,72 +1,62 @@
-
-fn add_chars_n(mut s:String ,c:char, n:i32) ->String
-{for _x in 0..n{
-    s.push(c);
+fn add_chars_n(mut s: String, c: char, n: i32) -> String {
+    for _x in 0..n {
+        s.push(c);
+    }
+    s
 }
-s
-
+fn add_chars_nn(s: &mut String, c: char, n: i32) {
+    for _x in 0..n {
+        s.push(c);
+    }
 }
-fn add_chars_nn(s:&mut String ,c:char, n:i32)
-{for _x in 0..n{
-    s.push(c);
+fn add_spaces(s: &mut String, n: u32) {
+    for _x in 0..n {
+        s.push(' ');
+    }
 }
-
-}
-fn add_spaces(s:&mut String ,n:u32)
-{for _x in 0..n{
-    s.push(' ');
-}
-}
-fn add_str(s:&mut String, str:&String)
-{
+fn add_str(s: &mut String, str: &str) {
     s.push_str(str);
-    }
-
-fn add_integer(s:&mut String ,n:i32)
-{if n==0
-    {s.push('0');}
-    else
-    {let mut copie=n;
-
-     let mut m=0;
-
-        while copie>0
-        {m=copie%10 +m*10;
-        copie=copie/10;
-        }
-        let mut i=0;
-        while m>0
-        {
-            if i>0 && i%3==0
-            {s.push('_');
-                
-            }
-            i+=1;
-            let uc=m%10;
-        let c= (uc as u8 + b'0') as char;
-            s.push(c);
-            m=m/10;
-        } 
-
-
-
-    }
-
 }
 
-fn add_float(s:&mut String , n:f32)
-{ let parte_int = n as i32;
+fn add_integer(s: &mut String, n: i32) {
+    if n == 0 {
+        s.push('0');
+    } else {
+        let mut copie = n;
+
+        let mut m = 0;
+
+        while copie > 0 {
+            m = copie % 10 + m * 10;
+            copie /= 10;
+        }
+        let mut i = 0;
+        while m > 0 {
+            if i > 0 && i % 3 == 0 {
+                s.push('_');
+            }
+            i += 1;
+            let uc = m % 10;
+            let c = (uc as u8 + b'0') as char;
+            s.push(c);
+            m /= 10;
+        }
+    }
+}
+
+fn add_float(s: &mut String, n: f32) {
+    let parte_int = n as i32;
     let parte_frac = n - parte_int as f32;
-    add_integer(s,parte_int);
+    add_integer(s, parte_int);
     s.push('.');
-    let  copie_frac = (parte_frac * 1000.0) as i32;
+    let copie_frac = (parte_frac * 1000.0) as i32;
     if copie_frac < 100 {
         s.push('0');
         if copie_frac < 10 {
             s.push('0');
         }
     }
-    add_integer(s,copie_frac);
+    add_integer(s, copie_frac);
 }
 fn main() {
     let mut sss = String::from("");
@@ -74,7 +64,7 @@ fn main() {
     let mut ss = String::from("");
     while i < 26 {
         let c = (i as u8 + b'a') as char;
-sss = add_chars_n(sss, c, 26-i);
+        sss = add_chars_n(sss, c, 26 - i);
 
         add_chars_nn(&mut ss, c, 26 - i);
 
@@ -83,25 +73,21 @@ sss = add_chars_n(sss, c, 26-i);
 
     print!("{}\n\n", sss);
 
-
     print!("{}\n\n\n", ss);
 
+    let mut s = String::new();
+    let mut s1 = String::new();
+    let mut s2 = String::new();
 
-     let mut s = String::new();
-     let mut s1 = String::new();
-     let mut s2 = String::new();
- 
+    add_spaces(&mut s, 35);
+    add_str(&mut s, &String::from("I 💚"));
+    s.push('\n');
+    add_spaces(&mut s, 35);
+    add_str(&mut s, &String::from("RUST."));
+    s.push('\n');
 
- add_spaces(&mut s,35);
- add_str(&mut s,&String::from("I 💚"));
- s.push('\n');
- add_spaces(&mut s,35);
- add_str(&mut s,&String::from("RUST."));
- s.push('\n');
-
-
-println!("{}", s);
-let c1 = String::from("Most");
+    println!("{}", s);
+    let c1 = String::from("Most");
     add_str(&mut s1, &c1);
     add_spaces(&mut s1, 1);
     add_spaces(&mut s2, c1.len() as u32 + 1);
@@ -124,7 +110,7 @@ let c1 = String::from("Most");
     let lungime_inainte = s1.len();
     add_integer(&mut s1, 306437968);
     let caractere_adaugate = (s1.len() - lungime_inainte) as u32;
-    
+
     add_spaces(&mut s1, 1);
     add_spaces(&mut s2, caractere_adaugate + 1);
 
@@ -169,4 +155,3 @@ let c1 = String::from("Most");
     println!("{}", s1);
     println!("{}", s2);
 }
-
