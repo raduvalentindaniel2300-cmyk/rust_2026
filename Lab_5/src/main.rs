@@ -59,7 +59,11 @@ let linii = fs::read_to_string("src/student.txt")?;
             ok +=1;
         }
         else if ok == 2{
-            student.age = x.parse::<u32>().unwrap();
+        if let Ok(age) = x.parse::<u32>() {
+                student.age = age;
+            } else {
+                println!("Nu am putut parsa varsta: {}", x);
+            }
             ok +=1;
         }
 
